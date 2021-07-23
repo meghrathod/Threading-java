@@ -9,6 +9,20 @@ public class Program {
         w2.start();
         w1.setName("w1");
         w2.setName("w2");
+
+        (new Thread(() -> {
+            Thread t = Thread.currentThread();
+            t.setName("w3");
+            for (int i = 5; i > 0; i--) {
+                System.out.println(t.getName() + " says Hello!");
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+
+                }
+            }
+        })).start();
+
         Thread t = Thread.currentThread();
         for (int i = 0; i < 5; i++) {
             System.out.println(t.getName() + " says hello " + i);
