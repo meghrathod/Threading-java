@@ -5,22 +5,10 @@ public class Program {
         Work1 w1 = new Work1();
         Work2 w2 = new Work2();
 
-        Thread t1 = new Thread(w1);
-        Thread t2 = new Thread(() -> {
-            Thread t = Thread.currentThread();
-            for (int i = 5; i > 0; i--) {
-                System.out.println(t.getName() + "says Hello!");
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-
-                }
-            }
-        });
-        t1.start();
-        t2.start();
-        t1.setName("t1");
-        t2.setName("t2");
+        w1.start();
+        w2.start();
+        w1.setName("w1");
+        w2.setName("w2");
         Thread t = Thread.currentThread();
         for (int i = 0; i < 5; i++) {
             System.out.println(t.getName() + " says hello " + i);
@@ -34,12 +22,12 @@ public class Program {
     }
 }
 
-class Work1 implements Runnable {
+class Work1 extends Thread {
     @Override
     public void run() {
         Thread t = Thread.currentThread();
         for (int i = 5; i > 0; i--) {
-            System.out.println(t.getName() + "says Hello!");
+            System.out.println(t.getName() + " says Hello!");
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
@@ -50,12 +38,12 @@ class Work1 implements Runnable {
     }
 }
 
-class Work2 implements Runnable {
+class Work2 extends Thread {
     @Override
     public void run() {
         Thread t = Thread.currentThread();
         for (int i = 5; i > 0; i--) {
-            System.out.println(t.getName() + "says Hello!");
+            System.out.println(t.getName() + " says Hello!");
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
